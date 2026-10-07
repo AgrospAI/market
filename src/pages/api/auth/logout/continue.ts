@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { buildClearAuthCookieStrings } from '../_cookies'
+import { getOidcEndpoints } from '../_oidc'
 import { authEnabled, oidcClientId, oidcIssuer } from 'app.config.cjs'
 
 const FEDERATED_LOGOUT_CONTINUE_COOKIE = 'federated_logout_continue'
@@ -15,10 +16,6 @@ function getRequestOrigin(req: NextApiRequest): string {
   const protocol = forwardedProto.split(',')[0]?.trim() || 'https'
 
   return `${protocol}://${host}`
-}
-
-function getEndSessionUrl(issuer: string) {
-  return `${issuer.replace(/\/$/, '')}/end-session/`
 }
 
 function serializeFederatedLogoutContinueCookie(value: string, maxAge: number) {
@@ -38,7 +35,10 @@ function clearLogoutCookies(res: NextApiResponse) {
   }
 }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET'])
     return res.status(405).end()
@@ -69,6 +69,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const callbackUrl = `${getRequestOrigin(req)}/auth/callback/logout`
+    const { endSession: endSessionUrl } = await getOidcEndpoints(issuer)
 
     const oidcParams = new URLSearchParams({
       client_id: clientId,
@@ -77,15 +78,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     })
 
     console.info('Continuing logout with Main OIDC provider.')
-    console.info(
-      `Redirecting to: ${getEndSessionUrl(issuer)}?${oidcParams.toString()}`
-    )
+    console.info(`Redirecting to: ${endSessionUrl}?${oidcParams.toString()}`)
 
     clearLogoutCookies(res)
-    return res.redirect(
-      302,
-      `${getEndSessionUrl(issuer)}?${oidcParams.toString()}`
-    )
+    return res.redirect(302, `${endSessionUrl}?${oidcParams.toString()}`)
   } catch (error) {
     console.error('Federated logout continuation failed:', error)
     clearLogoutCookies(res)

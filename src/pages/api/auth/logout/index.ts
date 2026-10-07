@@ -6,6 +6,7 @@ import {
   IDP_END_SESSION_URL_COOKIE
 } from '../_cookies'
 import { isMainProviderByName } from '../_federated'
+import { getOidcEndpoints } from '../_oidc'
 import { authEnabled, oidcClientId, oidcIssuer } from 'app.config.cjs'
 
 const OIDC_CLIENT_SECRET_ENV_KEY = 'OIDC_CLIENT_SECRET'
@@ -21,19 +22,6 @@ function getRequestOrigin(req: NextApiRequest): string {
   const protocol = forwardedProto.split(',')[0]?.trim() || 'https'
 
   return `${protocol}://${host}`
-}
-
-function getEndSessionUrl(issuer: string): string {
-  return `${issuer.replace(/\/$/, '')}/end-session/`
-}
-
-function getRevokeUrl(issuer: string): string {
-  if (issuer.includes('/application/o/')) {
-    const base = issuer.split('/application/o/')[0]
-    return `${base}/application/o/revoke/`
-  }
-
-  return `${issuer.replace(/\/$/, '')}/revoke/`
 }
 
 function serializeFederatedLogoutContinueCookie(
@@ -94,7 +82,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const { access_token, refresh_token, login_source } = req.cookies
-  const revokeUrl = getRevokeUrl(issuer)
+  const { revocation: revokeUrl, endSession: endSessionUrl } =
+    await getOidcEndpoints(issuer)
 
   try {
     await Promise.all([
@@ -143,7 +132,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
       state: 'logout'
     })
 
-    const mainLogoutUrl = `${getEndSessionUrl(issuer)}?${oidcParams.toString()}`
+    const mainLogoutUrl = `${endSessionUrl}?${oidcParams.toString()}`
     return res.redirect(302, mainLogoutUrl)
   }
 
@@ -161,10 +150,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
         post_logout_redirect_uri: callbackUrl,
         state: 'logout'
       })
-      return res.redirect(
-        302,
-        `${getEndSessionUrl(issuer)}?${oidcParams.toString()}`
-      )
+      return res.redirect(302, `${endSessionUrl}?${oidcParams.toString()}`)
     }
 
     res.setHeader('Set-Cookie', [
@@ -193,7 +179,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse) {
     state: 'logout'
   })
 
-  const mainLogoutUrl = `${getEndSessionUrl(issuer)}?${oidcParams.toString()}`
+  const mainLogoutUrl = `${endSessionUrl}?${oidcParams.toString()}`
   return res.redirect(302, mainLogoutUrl)
 }
 
