@@ -43,7 +43,7 @@
 
 .socialButton:hover:not(:disabled) {
   background: #f8fafc;
-  border-color: #0a4b70;
+  border-color: var(--clr-navy);
 }
 
 .socialButton:disabled {
@@ -79,7 +79,7 @@
 }
 
 .terms a {
-  color: #0a4b70;
+  color: var(--clr-navy);
   text-decoration: none;
 }
 

@@ -277,9 +277,9 @@
 .toggle {
   font-size: 12px;
   font-weight: 600;
-  color: #00adb2;
+  color: var(--clr-teal);
   cursor: pointer;
-  border: 1px solid #00adb2;
+  border: 1px solid var(--clr-teal);
   border-radius: 10px;
   padding: 0 6px;
   white-space: nowrap;

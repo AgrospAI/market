@@ -1,46 +1,52 @@
 :root {
   /* Base palette */
   --brand-white: #ffffff;
-  --brand-black: #012037;
-  --brand-blue: #014f86;
-  --brand-blue-light: #2a6f97;
-  --brand-blue-lighter: #61a5c2;
-  --brand-red: #ff360d;
+  --brand-black: #00151f;
+  --brand-blue: #004967;
+  --brand-blue-light: #008baa;
+  --brand-blue-lighter: #46daff;
+  --brand-red: #d80606;
+
+  /* AgrospAI brand */
+  --brand-agrospai-light: #d4e393;
+  --brand-agrospai-dark: #295140;
 
   --brand-gradient: linear-gradient(
     to right bottom,
-    var(--brand-blue),
-    var(--brand-blue-lighter)
+    var(--brand-blue-light),
+    var(--brand-blue)
   );
 
-  --brand-grey: #3d3d3d;
-  --brand-grey-light: #858585;
-  --brand-grey-lighter: #e0e0e0;
-  --brand-grey-dimmed: #f5f5f5;
+  --brand-grey: #2b2e3b;
+  --brand-grey-light: #4c5167;
+  --brand-grey-lighter: #d0d2dd;
+  --brand-grey-dimmed: #f5f6fb;
 
   --brand-alert-green: #5fb359;
-  --brand-alert-red: #ff360d;
+  --brand-alert-red: #d80606;
+  --brand-alert-orange: #b35f36;
   --brand-alert-yellow: #eac146;
   --brand-error-red: #f00;
 
   --ocean-black: #141414;
   --ocean-pink: #ff4092;
   --ocean-violet: #e000cf;
-  --ocean-blue: #4ca3d3;
-  --ocean-orange-color: #fdd655;
+  --ocean-blue: #008baa;
+  --ocean-orange-color: #d4e393;
 
-  --clr-navy: #0a4b70;
-  --clr-amber: #fdd655;
-  --clr-teal: #00adb2;
+  --clr-navy: #004967;
+  --clr-navy-deep: #003349;
+  --clr-amber: var(--brand-agrospai-light);
+  --clr-teal: #008baa;
   --clr-slate-70: rgba(48, 48, 49, 0.7);
   --clr-slate-50: rgba(48, 48, 49, 0.5);
   --clr-slate-12: rgba(48, 48, 49, 0.12);
-  --clr-did-text: rgba(76, 163, 211, 0.7);
+  --clr-did-text: rgba(0, 139, 170, 0.7);
 
   /* Semantic roles */
   --color-primary: var(--brand-blue);
   --color-secondary: var(--brand-blue-light);
-  --color-highlight: var(--brand-red);
+  --color-highlight: var(--brand-blue);
   --color-success: var(--brand-alert-green);
 
   --text-ink: #303031;
@@ -59,53 +65,58 @@
   --background-detail-box: var(--surface-highlight);
 
   --border-color: var(--brand-grey-lighter);
-  --border-navy-soft: rgba(10, 75, 112, 0.5);
+  --border-navy-soft: rgba(0, 73, 103, 0.5);
   --box-shadow-color: rgba(0, 0, 0, 0.05);
-  --modal-overlay-background: rgba(1, 32, 55, 0.45);
+  --modal-overlay-background: rgba(0, 21, 31, 0.45);
 
   --primary-hover: var(--clr-navy);
   --surface-highlight: var(--surface-warning);
-  --surface-warning: rgba(253, 214, 85, 0.15);
+  --surface-warning: rgba(212, 227, 147, 0.25);
   --surface-neutral: rgba(48, 48, 49, 0.02);
-  --surface-hover: rgba(10, 75, 112, 0.04);
+  --surface-hover: rgba(0, 73, 103, 0.04);
 
   --gradient-primary: linear-gradient(
       115.97deg,
-      #1f2c50 0%,
-      rgba(10, 75, 112, 0.8) 27.47%,
-      rgba(10, 75, 112, 0.7) 43.49%,
-      rgba(10, 75, 112, 0.8) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 0%,
+      rgba(0, 73, 103, 0.8) 27.47%,
+      rgba(0, 73, 103, 0.7) 43.49%,
+      rgba(0, 73, 103, 0.8) 55.43%,
+      var(--clr-navy-deep) 100%
     ),
-    #64ace0;
+    var(--brand-blue-light);
   --gradient-accent: linear-gradient(
       115.97deg,
-      #fdd655 0%,
-      rgba(253, 214, 85, 0.8) 27.47%,
-      rgba(253, 214, 85, 0.7) 43.49%,
-      rgba(253, 214, 85, 0.8) 55.43%,
-      #fdd655 100%
+      var(--clr-amber) 0%,
+      rgba(212, 227, 147, 0.8) 27.47%,
+      rgba(212, 227, 147, 0.7) 43.49%,
+      rgba(212, 227, 147, 0.8) 55.43%,
+      var(--clr-amber) 100%
     ),
-    linear-gradient(0deg, #fdd655, #fdd655), #ffffff;
+    linear-gradient(0deg, var(--clr-amber), var(--clr-amber)), #ffffff;
 
   /* Component tokens */
-  --checkbox-selected-background: var(--ocean-orange-color);
+  --checkbox-selected-background: var(--brand-blue);
   --bookmark-icon-fill-color: var(--clr-slate-70);
-  --bookmark-icon-selected-fill-color: var(--ocean-orange-color);
+  --bookmark-icon-selected-fill-color: var(--brand-blue);
   --link-font-color: var(--color-highlight);
   --nft-refresh-icon-fill: var(--brand-white);
   --badge-background-color: var(--color-primary);
 
   --menu-logo-color-hover: var(--brand-blue);
+  --menu-background: var(--brand-agrospai-light);
   --menu-font-color: var(--color-primary);
-  --menu-font-color-active: var(--color-secondary);
-  --menu-font-color-hover: var(--color-secondary);
+  --menu-font-color-active: var(--font-color-heading);
+  --menu-font-color-hover: var(--color-primary);
   --menu-mobile-navigation-border-color: var(--brand-grey-lighter);
   --menu-border-color: var(--color-primary);
   --menu-icon-fill-color: var(--color-primary);
   --menu-icon-fill-color-hover: var(--color-primary);
   --menu-caret-fill-color: var(--color-primary);
   --menu-network-badge-font-color: var(--brand-white);
+
+  --footer-background-color: var(--brand-agrospai-dark);
+  --footer-font-color: var(--brand-white);
+  --footer-font-color-highlight: var(--brand-agrospai-light);
 
   --input-font-color: var(--font-color-heading);
   --input-placeholder-font-color: var(--brand-grey);
@@ -143,8 +154,8 @@
   --pagination-hover-font-color: var(--color-highlight);
 
   --confetti-color-one: var(--brand-blue-light);
-  --confetti-color-two: var(--brand-red);
-  --confetti-color-three: var(--ocean-pink);
+  --confetti-color-two: var(--brand-blue-lighter);
+  --confetti-color-three: var(--brand-agrospai-light);
   --confetti-color-four: var(--brand-grey-light);
   --confetti-color-five: var(--brand-grey-lighter);
 
@@ -185,9 +196,9 @@
   --navy-700: #0f4c81;
   --navy-650: #1b6690;
   --navy-600: #2f5a7a;
-  --navy-620: rgb(10 81 121);
-  --navy-630: rgb(13, 75, 120);
-  --navy-640: rgb(13 76 113);
+  --navy-620: rgb(0 85 118);
+  --navy-630: rgb(0, 73, 103);
+  --navy-640: rgb(0 73 103);
   --teal-700: #0c5460;
   --blue-700: #004ec2;
   --blue-650: #0056d2;
@@ -246,22 +257,22 @@
   --ink-alpha-30: rgba(48, 48, 49, 0.3);
   --ink-alpha-40: rgba(48, 48, 49, 0.4);
   --ink-alpha-80: rgba(48, 48, 49, 0.8);
-  --navy-alpha-5: rgba(10, 75, 112, 0.05);
-  --navy-alpha-10: rgba(10, 75, 112, 0.1);
-  --navy-alpha-20: rgba(10, 75, 112, 0.2);
-  --navy-alpha-30: rgba(10, 75, 112, 0.3);
-  --navy-alpha-40: rgba(10, 75, 112, 0.4);
-  --navy-alpha-94: rgb(6 68 103 / 94%);
-  --ocean-alpha-10: rgba(75, 163, 211, 0.1);
-  --ocean-alpha-30: rgba(75, 163, 211, 0.3);
-  --ocean-bright-alpha-10: rgba(76, 163, 211, 0.1);
-  --ocean-bright-alpha-90: rgba(76, 163, 211, 0.9);
+  --navy-alpha-5: rgba(0, 73, 103, 0.05);
+  --navy-alpha-10: rgba(0, 73, 103, 0.1);
+  --navy-alpha-20: rgba(0, 73, 103, 0.2);
+  --navy-alpha-30: rgba(0, 73, 103, 0.3);
+  --navy-alpha-40: rgba(0, 73, 103, 0.4);
+  --navy-alpha-94: rgb(0 66 92 / 94%);
+  --ocean-alpha-10: rgba(0, 139, 170, 0.1);
+  --ocean-alpha-30: rgba(0, 139, 170, 0.3);
+  --ocean-bright-alpha-10: rgba(0, 139, 170, 0.1);
+  --ocean-bright-alpha-90: rgba(0, 139, 170, 0.9);
   --teal-alpha-10: rgba(0, 150, 136, 0.1);
   --cyan-alpha-1: rgba(0, 173, 178, 0.01);
   --green-alpha-1: rgba(69, 192, 31, 0.01);
   --green-bright-alpha-15: rgba(93, 253, 85, 0.15);
-  --yellow-alpha-10: rgba(253, 214, 85, 0.1);
-  --yellow-alpha-30: rgba(253, 214, 85, 0.3);
+  --yellow-alpha-10: rgba(212, 227, 147, 0.2);
+  --yellow-alpha-30: rgba(212, 227, 147, 0.5);
   --red-alpha-15: rgba(255, 0, 0, 0.15);
   --white-alpha-15: rgba(255, 255, 255, 0.15);
   --white-alpha-20: rgba(255, 255, 255, 0.2);

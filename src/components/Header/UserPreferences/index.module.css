@@ -19,8 +19,8 @@
 .icon {
   fill: var(--menu-icon-fill-color);
   transition: 0.2s ease-out;
-  width: 1em;
-  height: 1em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .preferences:hover .icon,

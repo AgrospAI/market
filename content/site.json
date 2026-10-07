@@ -1,10 +1,10 @@
 {
-  "siteTitle": "Ocean Protocol Enterprise",
-  "siteTagline": "Publish, find, compare, manage and monetize proprietary data & AI products in a secure,",
+  "siteTitle": "AgrospAI Demonstration Marketplace",
+  "siteTagline": "Agri-food Data Space Demonstrator for Sovereign Data-Sharing and Artificial Intelligence Services",
   "taglineContinuation": "Continuted",
   "siteUrl": "https://enterprise.oceanprotocol.com",
   "siteImage": "/share.png",
-  "copyright": "All Rights Reserved. Powered by [Ocean Protocol](https://oceanprotocol.com).",
+  "copyright": "All Rights Reserved. Powered by [Ocean Enterprise](https://www.oceanenterprise.io/). Built by [Universitat de Lleida](https://www.udl.cat).",
   "menu": [
     {
       "name": "Catalogue",
@@ -24,10 +24,10 @@
   "warning": {
     "ctd": "Please note that Compute-to-Data is still in beta phase."
   },
-  "siteDescription": "A decentralized data marketplace powered by Ocean Protocol.",
+  "siteDescription": "Agri-food data space for sovereign data-sharing and AI services, developed by Universitat de Lleida and powered by Ocean Enterprise.",
   "footer": {
-    "subtitle": "The enterprise data market",
-    "copyright": "© Ocean Enterprise 2025",
+    "subtitle": "Transforming Data Act Compliance into Scalable Monetization Opportunities",
+    "copyright": "© AgrospAI 2025 · Universitat de Lleida",
     "privacyTitle": "Privacy",
     "content": [
       {
@@ -38,16 +38,16 @@
             "link": "https://sepolia.etherscan.io/"
           },
           {
-            "name": "GitHub",
-            "link": "https://github.com/OceanProtocolEnterprise"
+            "name": "About AgrospAI",
+            "link": "https://agrospai.udl.cat/en"
+          },
+          {
+            "name": "Universitat de Lleida",
+            "link": "https://www.udl.cat"
           },
           {
             "name": "Docs",
             "link": "https://docs.oceanenterprise.io/"
-          },
-          {
-            "name": "Medium",
-            "link": "https://medium.com/ocean-enterprise-collective"
           }
         ]
       },

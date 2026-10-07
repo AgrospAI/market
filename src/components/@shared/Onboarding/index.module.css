@@ -12,4 +12,17 @@
 
 .wrapper {
   margin-bottom: calc(var(--spacer) * 2);
+  /* Re-map the shared blue palette to the AgrospAI greens for this module */
+  --color-primary: var(--brand-agrospai-dark);
+  --brand-yellow: var(--brand-agrospai-light);
+  --brand-grey-lighter: var(--brand-agrospai-light);
+  --ocean-blue: var(--brand-agrospai-dark);
+  --gradient-primary: linear-gradient(
+    115.97deg,
+    var(--brand-agrospai-dark) 0%,
+    rgba(41, 81, 64, 0.85) 27.47%,
+    rgba(41, 81, 64, 0.75) 43.49%,
+    rgba(41, 81, 64, 0.85) 55.43%,
+    var(--brand-agrospai-dark) 100%
+  );
 }

@@ -9,7 +9,7 @@
 }
 
 .free {
-  border: 1px solid #00adb2;
+  border: 1px solid var(--clr-teal);
   border-radius: 20px;
   padding: 2px 8px;
   width: fit-content;
@@ -20,7 +20,7 @@
   font-size: 12px;
   line-height: 100%;
   text-align: center;
-  color: #00adb2;
+  color: var(--clr-teal);
 }
 
 .paid {

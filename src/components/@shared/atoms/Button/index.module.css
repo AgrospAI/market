@@ -104,7 +104,7 @@ body .accent:focus {
   transform: translate3d(0, -0.05rem, 0);
   box-shadow: var(--shadow-lg);
   background: var(--yellow-450);
-  color: #0a4b70;
+  color: var(--clr-navy);
   transition: all 0.3s ease;
 }
 
@@ -277,7 +277,7 @@ body .accent:focus {
 .secondary:focus,
 .secondary:active {
   background: var(--clr-slate-12);
-  color: #0a4b70;
+  color: var(--clr-navy);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
   border: none;

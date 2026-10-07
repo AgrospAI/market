@@ -94,11 +94,11 @@
   padding: 12px 14px;
   background: linear-gradient(
     135deg,
-    #1f2c50 0%,
+    var(--clr-navy-deep) 0%,
     var(--navy-640) 27.47%,
     var(--navy-620) 43.49%,
     var(--navy-alpha-94) 55.43%,
-    #1e2e52 100%
+    var(--clr-navy-deep) 100%
   );
   border-radius: 12px;
   border: 1px solid rgba(245, 158, 11, 0.2);
@@ -298,11 +298,11 @@
   .progressBarWrapper {
     background: linear-gradient(
       135deg,
-      #1f2c50 0%,
+      var(--clr-navy-deep) 0%,
       var(--navy-640) 27.47%,
       var(--navy-620) 43.49%,
       var(--navy-alpha-94) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 100%
     );
     border-color: rgba(245, 158, 11, 0.25);
   }

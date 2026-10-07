@@ -136,7 +136,7 @@
 
 .selectionDidButton:hover {
   border-color: var(--border-navy-soft);
-  box-shadow: 0 4px 10px rgba(10, 75, 112, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 73, 103, 0.08);
   background: #f9fcff;
 }
 

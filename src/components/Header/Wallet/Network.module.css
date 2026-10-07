@@ -12,7 +12,7 @@
 
 .name {
   font-size: var(--font-size-small);
-  color: #fff;
+  color: var(--menu-font-color);
 }
 
 .badge {

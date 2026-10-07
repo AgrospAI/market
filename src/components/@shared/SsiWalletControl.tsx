@@ -453,7 +453,7 @@ export default function SsiWalletControl({
 
         <span className={styles.iconWrapper}>
           {isSsiBusy ? (
-            <Loader variant="white" noMargin />
+            <Loader variant="primary" noMargin />
           ) : isConnectedWithSession ? (
             <ConnectedIcon className={styles.icon} aria-hidden="true" />
           ) : (

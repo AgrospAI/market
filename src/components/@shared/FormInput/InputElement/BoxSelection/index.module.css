@@ -46,14 +46,14 @@
 .boxSelectionsWrapper input[type='radio']:checked + label {
   color: var(--brand-white);
   border: none;
-  background: #64ace0;
+  background: var(--brand-blue-light);
   background: linear-gradient(
     135deg,
-    #1f2c50 0%,
-    rgba(10, 75, 112, 0.8) 27.47%,
-    rgba(10, 75, 112, 0.7) 43.49%,
-    rgba(10, 75, 112, 0.8) 55.43%,
-    #1e2e52 100%
+    var(--clr-navy-deep) 0%,
+    rgba(0, 73, 103, 0.8) 27.47%,
+    rgba(0, 73, 103, 0.7) 43.49%,
+    rgba(0, 73, 103, 0.8) 55.43%,
+    var(--clr-navy-deep) 100%
   );
   box-shadow: 1px 4px 8px 0 var(--black-alpha-15);
 }

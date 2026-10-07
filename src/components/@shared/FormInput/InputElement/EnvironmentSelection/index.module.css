@@ -30,11 +30,11 @@
 
 .environmentCard:hover {
   box-shadow: 1px 4px 8px 0 var(--black-alpha-15);
-  background: rgba(10, 75, 112, 0.04);
+  background: rgba(0, 73, 103, 0.04);
 }
 
 .environmentCard.selected {
-  background: rgba(10, 75, 112, 0.04);
+  background: rgba(0, 73, 103, 0.04);
   box-shadow: 0 4px 8px var(--navy-alpha-20);
 }
 
@@ -86,7 +86,7 @@ body .infoButton {
 }
 
 .freeTag {
-  border: 1px solid #00adb2;
+  border: 1px solid var(--clr-teal);
   border-radius: 20px;
   padding: 2px 8px;
   width: fit-content;
@@ -99,7 +99,7 @@ body .infoButton {
   font-size: 12px;
   line-height: 100%;
   text-align: center;
-  color: #00adb2;
+  color: var(--clr-teal);
 }
 
 .paidTag {

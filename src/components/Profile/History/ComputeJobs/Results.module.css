@@ -90,7 +90,7 @@
 .rightAlert {
   margin-top: 1rem;
   width: 4px;
-  background: #fdd655;
+  background: var(--clr-amber);
 }
 
 .help {

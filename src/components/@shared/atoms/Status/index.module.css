@@ -21,6 +21,6 @@
 /* red square */
 .error {
   border-radius: 0;
-  background: #fdd655;
+  background: var(--clr-amber);
   text-transform: capitalize;
 }

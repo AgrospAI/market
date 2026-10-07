@@ -5,7 +5,7 @@ import { useMarketMetadata } from '@context/MarketMetadata'
 // import Container from '@components/@shared/atoms/Container'
 // import Image from 'next/image'
 // import logo from '../../../public/images/ecosystem/ocean_enterprise_logo.png'
-import Logo from '@images/logo.svg'
+import Logo from '@images/agrospai_logo_horizontal.svg'
 // import XIcon from '@images/xIcon.svg'
 import LinkedInIcon from '@images/linkedInIcon.svg'
 import MediumIcon from '@images/mediumIcon.svg'
@@ -26,16 +26,16 @@ export default function Footer(): ReactElement {
           <Logo className={styles.logo} />
           <div className={styles.taglineContainer}>
             <span className={styles.tagline}>
-              Developed by the Ocean Enterprise Collective. Learn more and join
-              us!
+              Developed by Universitat de Lleida and powered by Ocean
+              Enterprise. Learn more about the project!
             </span>
             <a
               className={styles.websiteLink}
-              href="https://oceanenterprise.io"
+              href="https://agrospai.udl.cat/en"
               target="_blank"
               rel="noopener noreferrer"
             >
-              oceanenterprise.io
+              agrospai.udl.cat
             </a>
           </div>
           <div className={styles.socialLinks}>

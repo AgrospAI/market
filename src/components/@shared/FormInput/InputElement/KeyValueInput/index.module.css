@@ -127,9 +127,9 @@
 .addButton .addIcon {
   width: 16px;
   height: 16px;
-  fill: #0a4b70;
+  fill: var(--clr-navy);
 }
 
 .addButton .addIcon path {
-  fill: #0a4b70;
+  fill: var(--clr-navy);
 }

@@ -1,7 +1,7 @@
 /* Updated to remove all boxes while keeping functionality */
 .button {
   font-family: var(--font-family-base);
-  font-size: 20px;
+  font-size: var(--font-size-base);
   text-transform: uppercase;
   padding: 0;
   white-space: nowrap;
@@ -25,10 +25,10 @@
 .initial {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 20px;
+  font-size: var(--font-size-base);
   line-height: 137%;
   text-align: center;
-  color: #fff;
+  color: var(--menu-font-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -45,7 +45,7 @@
   text-transform: none;
   padding-right: calc(var(--spacer) / 3);
   padding-left: calc(var(--spacer) / 8);
-  color: #fff;
+  color: var(--menu-font-color);
 }
 
 .button svg {
