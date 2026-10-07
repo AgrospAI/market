@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import type { NextApiRequest } from 'next'
-import { jwtVerify, type JWTPayload } from 'jose'
-import { getOidcMetadata } from './_oidc'
+import type { JWTPayload } from 'jose'
+import { verifyAccessToken } from './_oidc'
 import { introspectAccessToken } from './_introspect'
 import { getOptionalStringClaim } from './_claims'
 import { authEnabled, oidcClientId, oidcIssuer } from 'app.config.cjs'
@@ -50,11 +50,11 @@ export async function getVerifiedSessionClaims(
     }
 
     try {
-      const metadata = await getOidcMetadata(oidcIssuer)
-      const { payload } = await jwtVerify(accessToken, metadata.jwks, {
-        issuer: metadata.issuer,
-        audience: oidcClientId
-      }).catch((error) => {
+      const { payload } = await verifyAccessToken(
+        accessToken,
+        oidcIssuer,
+        oidcClientId
+      ).catch((error) => {
         const { code, payload: expiredPayload } = error as {
           code?: string
           payload?: JWTPayload

@@ -1,4 +1,4 @@
-import { createRemoteJWKSet } from 'jose'
+import { createRemoteJWKSet, jwtVerify, type JWTPayload } from 'jose'
 import { OIDC_DISCOVERY_PATH, OIDC_REQUEST_TIMEOUT_MS } from './_constants'
 
 const oidcMetadataCache = new Map<
@@ -10,6 +10,85 @@ const oidcMetadataCache = new Map<
 >()
 
 const endSessionUrlCache = new Map<string, string>()
+
+export type OidcEndpoints = {
+  authorization: string
+  token: string
+  introspection: string
+  revocation: string
+  endSession: string
+}
+
+const oidcEndpointsCache = new Map<string, OidcEndpoints>()
+
+export function isAuthentikIssuer(issuer: string): boolean {
+  return issuer.includes('/application/o/')
+}
+
+// Authentik-style paths, used when the discovery document is unavailable
+// or does not advertise an endpoint.
+function getFallbackEndpoints(issuer: string): OidcEndpoints {
+  const normalizedIssuer = issuer.replace(/\/$/, '')
+  const base = isAuthentikIssuer(issuer)
+    ? `${issuer.split('/application/o/')[0]}/application/o`
+    : normalizedIssuer
+
+  return {
+    authorization: `${base}/authorize/`,
+    token: `${base}/token/`,
+    introspection: `${base}/introspect/`,
+    revocation: `${base}/revoke/`,
+    endSession: `${normalizedIssuer}/end-session/`
+  }
+}
+
+function pickUrl(value: unknown, fallback: string): string {
+  return typeof value === 'string' && value.length > 0 ? value : fallback
+}
+
+// Resolves the provider endpoints from the OIDC discovery document so that
+// non-Authentik providers (e.g. Keycloak) work without extra configuration.
+export async function getOidcEndpoints(issuer: string): Promise<OidcEndpoints> {
+  const normalizedIssuer = issuer.replace(/\/$/, '')
+  const cached = oidcEndpointsCache.get(normalizedIssuer)
+  if (cached) return cached
+
+  const fallback = getFallbackEndpoints(issuer)
+
+  try {
+    const response = await fetch(`${normalizedIssuer}${OIDC_DISCOVERY_PATH}`, {
+      signal: AbortSignal.timeout(OIDC_REQUEST_TIMEOUT_MS)
+    })
+
+    if (!response.ok) {
+      throw new Error(`Discovery returned status ${response.status}`)
+    }
+
+    const discovery = await response.json()
+    const endpoints: OidcEndpoints = {
+      authorization: pickUrl(
+        discovery.authorization_endpoint,
+        fallback.authorization
+      ),
+      token: pickUrl(discovery.token_endpoint, fallback.token),
+      introspection: pickUrl(
+        discovery.introspection_endpoint,
+        fallback.introspection
+      ),
+      revocation: pickUrl(discovery.revocation_endpoint, fallback.revocation),
+      endSession: pickUrl(discovery.end_session_endpoint, fallback.endSession)
+    }
+
+    oidcEndpointsCache.set(normalizedIssuer, endpoints)
+    return endpoints
+  } catch (error) {
+    console.error(
+      'Failed to load OIDC discovery document, using fallback endpoints:',
+      error
+    )
+    return fallback
+  }
+}
 
 export async function getOidcMetadata(issuer: string) {
   const normalizedIssuer = issuer.replace(/\/$/, '')
@@ -36,6 +115,31 @@ export async function getOidcMetadata(issuer: string) {
   }
   oidcMetadataCache.set(normalizedIssuer, metadata)
   return metadata
+}
+
+// Authentik puts the client ID in `aud`; Keycloak access tokens usually carry
+// `aud: "account"` and identify the client through `azp` instead.
+export function isTokenForClient(
+  payload: JWTPayload,
+  clientId: string
+): boolean {
+  const audiences = Array.isArray(payload.aud) ? payload.aud : [payload.aud]
+  return audiences.includes(clientId) || payload.azp === clientId
+}
+
+export async function verifyAccessToken(
+  accessToken: string,
+  issuer: string,
+  clientId: string
+) {
+  const metadata = await getOidcMetadata(issuer)
+  const result = await jwtVerify(accessToken, metadata.jwks, {
+    issuer: metadata.issuer
+  })
+  if (!isTokenForClient(result.payload, clientId)) {
+    throw new Error('Access token was not issued for this client')
+  }
+  return result
 }
 
 export async function getEndSessionUrlFromWellKnown(

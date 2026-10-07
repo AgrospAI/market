@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import { getOidcEndpoints } from './_oidc'
 
 const INTROSPECT_TIMEOUT_MS = 5000
 
@@ -7,21 +8,13 @@ export type AccessTokenIntrospectionResult =
   | { status: 'inactive' }
   | { status: 'unknown'; reason: string }
 
-function getIntrospectUrl(issuer: string): string {
-  if (issuer.includes('/application/o/')) {
-    const base = issuer.split('/application/o/')[0]
-    return `${base}/application/o/introspect/`
-  }
-  return `${issuer.replace(/\/$/, '')}/introspect/`
-}
-
 export async function introspectAccessToken(
   accessToken: string,
   issuer: string,
   clientId: string,
   clientSecret: string
 ): Promise<AccessTokenIntrospectionResult> {
-  const introspectUrl = getIntrospectUrl(issuer)
+  const { introspection: introspectUrl } = await getOidcEndpoints(issuer)
 
   try {
     const response = await fetch(introspectUrl, {
@@ -46,7 +39,7 @@ export async function introspectAccessToken(
         response.status === 404
       ) {
         console.error(
-          `INTROSPECT_CONFIG_ERROR status=${response.status} — check OIDC_CLIENT_SECRET, NEXT_PUBLIC_OIDC_ISSUER, and that the OIDC client is permitted to call /introspect/.`
+          `INTROSPECT_CONFIG_ERROR status=${response.status} — check OIDC_CLIENT_SECRET, NEXT_PUBLIC_OIDC_ISSUER, and that the OIDC client is permitted to call the introspection endpoint.`
         )
       } else {
         console.error(`Introspection HTTP ${response.status}.`)

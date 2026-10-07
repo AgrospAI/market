@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { jwtVerify, type JWTPayload } from 'jose'
 import { buildAuthCookieStrings } from './_cookies'
 import { buildClearTransientCookieStrings } from './_transient'
-import { getOidcMetadata } from './_oidc'
+import { getOidcEndpoints, getOidcMetadata, verifyAccessToken } from './_oidc'
 import { OIDC_REQUEST_TIMEOUT_MS } from './_constants'
 import { introspectAccessToken } from './_introspect'
 import { getLoginSource, getWellKnownUrl } from './_claims'
@@ -17,18 +17,6 @@ import {
 } from 'app.config.cjs'
 
 const OIDC_CLIENT_SECRET_ENV_KEY = 'OIDC_CLIENT_SECRET'
-
-function getTokenUrl(issuer: string): string {
-  if (!issuer || typeof issuer !== 'string') {
-    throw new Error('Issuer is required to build token URL')
-  }
-
-  if (issuer.includes('/application/o/')) {
-    const base = issuer.split('/application/o/')[0]
-    return `${base}/application/o/token/`
-  }
-  return `${issuer.replace(/\/$/, '')}/token/`
-}
 
 function getRequiredStringClaim(payload: JWTPayload, claim: string): string {
   if (!payload || typeof payload !== 'object') {
@@ -110,7 +98,7 @@ export default async function handler(
   try {
     let tokenUrl: string
     try {
-      tokenUrl = oidcTokenUrl || getTokenUrl(issuer)
+      tokenUrl = oidcTokenUrl || (await getOidcEndpoints(issuer)).token
     } catch (urlError) {
       console.error('Failed to build token URL:', urlError)
       return failRedirect(res, 'server_error')
@@ -161,13 +149,10 @@ export default async function handler(
 
     let payload: JWTPayload
     try {
-      const { payload: verifiedPayload } = await jwtVerify(
+      const { payload: verifiedPayload } = await verifyAccessToken(
         data.access_token as string,
-        metadata.jwks,
-        {
-          issuer: metadata.issuer,
-          audience: clientId
-        }
+        issuer,
+        clientId
       )
       payload = verifiedPayload
     } catch (verifyError) {
@@ -175,7 +160,27 @@ export default async function handler(
       return failRedirect(res)
     }
 
-    if (payload.nonce !== expectedNonce) {
+    // The nonce belongs in the ID token; Keycloak no longer copies it into
+    // the access token, so only fall back to it when no ID token is returned.
+    let nonceSource: JWTPayload = payload
+    if (typeof data.id_token === 'string' && data.id_token) {
+      try {
+        const { payload: idTokenPayload } = await jwtVerify(
+          data.id_token,
+          metadata.jwks,
+          {
+            issuer: metadata.issuer,
+            audience: clientId
+          }
+        )
+        nonceSource = idTokenPayload
+      } catch (idTokenError) {
+        console.error('ID token verification failed:', idTokenError)
+        return failRedirect(res)
+      }
+    }
+
+    if (nonceSource.nonce !== expectedNonce) {
       console.error('Callback nonce mismatch')
       return failRedirect(res)
     }
