@@ -35,7 +35,7 @@
 }
 
 .boxModel::-webkit-scrollbar-thumb {
-  background: #fdd655;
+  background: var(--clr-amber);
   border-radius: 20px;
 }
 
@@ -207,7 +207,7 @@
 }
 
 .symbol {
-  color: #00adb2;
+  color: var(--clr-teal);
 }
 
 .checkboxInput {
@@ -222,8 +222,8 @@
 }
 
 .checkboxInput:checked {
-  background-color: #fdd655;
-  border-color: #fdd655;
+  background-color: var(--clr-amber);
+  border-color: var(--clr-amber);
 }
 
 .checkboxInput:checked::after {

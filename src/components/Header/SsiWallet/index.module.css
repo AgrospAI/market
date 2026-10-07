@@ -39,12 +39,15 @@
   font-weight: 700;
   line-height: 137%;
   text-align: center;
-  color: #fff;
+  color: var(--brand-agrospai-dark);
   transition: all 0.3s ease;
   border: none;
-  background-color: transparent;
+  border-radius: 20px;
+  height: 34px;
+  background-color: var(--brand-white);
+  box-shadow: 1px 2px 8px var(--black-alpha-15);
   cursor: pointer;
-  font-size: 20px;
+  font-size: var(--font-size-base);
 }
 .text {
   white-space: nowrap;
@@ -106,8 +109,8 @@
 }
 
 .connected {
-  color: var(--neutral-200);
-  background-color: transparent;
+  color: var(--brand-agrospai-dark);
+  background-color: var(--brand-white);
 }
 
 .connected:hover {
@@ -119,7 +122,7 @@
 }
 
 .disconnected {
-  background-color: transparent;
+  background-color: var(--brand-white);
 }
 
 .disconnected:hover {
@@ -169,7 +172,7 @@
   font-size: 14px;
   line-height: 114%;
   text-align: center;
-  color: #0a4b70;
+  color: var(--clr-navy);
   box-shadow: 1px 2px 8px 0 var(--black-alpha-15);
   background: rgba(48, 48, 49, 0.12);
 }
@@ -183,20 +186,20 @@
   font-size: 14px;
   line-height: 114%;
   text-align: center;
-  color: #0a4b70;
+  color: var(--clr-navy);
   box-shadow: 1px 2px 8px 0 var(--black-alpha-15);
   background: linear-gradient(
     135deg,
-    #fdd655 0%,
-    rgba(253, 214, 85, 0.8) 27.47%,
-    rgba(253, 214, 85, 0.7) 43.49%,
-    rgba(253, 214, 85, 0.8) 55.43%,
-    #fdd655 100%
+    var(--clr-amber) 0%,
+    rgba(212, 227, 147, 0.8) 27.47%,
+    rgba(212, 227, 147, 0.7) 43.49%,
+    rgba(212, 227, 147, 0.8) 55.43%,
+    var(--clr-amber) 100%
   );
 }
 
 .inputField {
-  border: 1px solid rgba(10, 75, 112, 0.5);
+  border: 1px solid rgba(0, 73, 103, 0.5);
   border-radius: 20px;
   padding: 10px 30px;
   width: 500px;
@@ -234,13 +237,14 @@
     padding: 12px 24px;
     width: 200px;
     height: 50px;
+    color: var(--brand-white);
     background: linear-gradient(
       135deg,
-      #1f2c50 0%,
+      var(--clr-navy-deep) 0%,
       var(--navy-640) 27.47%,
       var(--navy-620) 43.49%,
       var(--navy-alpha-94) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 100%
     );
   }
   .inputField {
@@ -327,13 +331,14 @@
     padding: 12px 24px;
     width: 200px;
     height: 50px;
+    color: var(--brand-white);
     background: linear-gradient(
       135deg,
-      #1f2c50 0%,
+      var(--clr-navy-deep) 0%,
       var(--navy-640) 27.47%,
       var(--navy-620) 43.49%,
       var(--navy-alpha-94) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 100%
     );
   }
 

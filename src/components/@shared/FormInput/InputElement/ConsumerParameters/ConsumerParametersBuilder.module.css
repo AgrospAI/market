@@ -271,13 +271,13 @@
   height: 32px;
   background: linear-gradient(
       115.97deg,
-      #1f2c50 0%,
-      rgba(10, 75, 112, 0.8) 27.47%,
-      rgba(10, 75, 112, 0.7) 43.49%,
-      rgba(10, 75, 112, 0.8) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 0%,
+      rgba(0, 73, 103, 0.8) 27.47%,
+      rgba(0, 73, 103, 0.7) 43.49%,
+      rgba(0, 73, 103, 0.8) 55.43%,
+      var(--clr-navy-deep) 100%
     ),
-    #64ace0;
+    var(--brand-blue-light);
   box-shadow: 1px 2px 8px var(--black-alpha-15);
   border-radius: 20px;
   border: none;

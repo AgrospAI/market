@@ -53,7 +53,7 @@
   align-items: center;
   padding: 9px 14px;
   gap: 4px;
-  background: #fdd655;
+  background: var(--clr-amber);
   border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   border: none;
   cursor: pointer;
@@ -74,7 +74,7 @@
 .searchIcon {
   width: 16px;
   height: 16px;
-  fill: #0a4b70;
+  fill: var(--clr-navy);
 }
 
 .searchButtonText {
@@ -84,5 +84,5 @@
   font-size: 14px;
   line-height: 22px;
   text-align: center;
-  color: #0a4b70;
+  color: var(--clr-navy);
 }

@@ -35,7 +35,7 @@
   font-weight: 700;
   text-decoration: underline;
   text-decoration-skip-ink: none;
-  color: #4ca3d3;
+  color: var(--ocean-blue);
   cursor: pointer;
 }
 

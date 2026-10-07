@@ -14,13 +14,13 @@ import InputElement from '@shared/FormInput/InputElement'
 import Features from './Features/Features'
 import Upload from '@images/publish.svg'
 import SearchLogo from '@images/search.svg'
-import Menu from './Menu/Menu'
 import { addExistingParamsToUrl } from '../Search/utils'
 import { useRouter } from 'next/router'
 import { useSearchBarStatus } from '@context/SearchBarStatus'
 import { useUserPreferences } from '@context/UserPreferences'
 import Container from '@components/@shared/atoms/Container'
 import OnboardingSection from '@components/@shared/Onboarding'
+import { useMarketMetadata } from '@context/MarketMetadata'
 
 async function emptySearch() {
   const searchParams = new URLSearchParams(window?.location.href)
@@ -39,6 +39,7 @@ function HeroSection({
   initialValue?: string
 }): ReactElement {
   const router = useRouter()
+  const { siteContent } = useMarketMetadata()
   const [value, setValue] = useState(initialValue || '')
   const parsed = router.query
   const searchBarRef = useRef<HTMLInputElement>(null)
@@ -105,18 +106,10 @@ function HeroSection({
   return (
     <section className={styles.hero}>
       <div className={styles.contentContainer}>
-        <header>
-          <Menu />
-        </header>
         <div className={styles.textContent}>
-          <h1 className={styles.title}>
-            Ocean Enterprise Demonstration Marketplace
-          </h1>
+          <h1 className={styles.title}>{siteContent?.siteTitle}</h1>
           <div className={styles.subtitle}>
-            <p>
-              Publish, find, compare, manage and monetize proprietary data & AI
-              products in a secure, trusted and compliant environment
-            </p>
+            <p>{siteContent?.siteTagline}</p>
           </div>
           <div className={styles.ctaContainer}>
             <div className={styles.ctaBlock}>
@@ -181,12 +174,9 @@ export default function HomePage(): ReactElement {
     <>
       <HeroSection />
       {showOnboardingModule && (
-        <>
-          <div className={styles.divider}></div>
-          <Container>
-            <OnboardingSection />
-          </Container>
-        </>
+        <Container>
+          <OnboardingSection />
+        </Container>
       )}
       <Features />
     </>

@@ -3,7 +3,7 @@
   font-size: var(--font-size-small);
   margin-bottom: calc(var(--spacer) / 6);
   margin-top: calc(var(--spacer) / 2);
-  color: #0a4b70;
+  color: var(--clr-navy);
   font-weight: 700;
   line-height: 150%;
 }

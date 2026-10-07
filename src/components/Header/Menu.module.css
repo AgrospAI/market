@@ -1,31 +1,25 @@
 .menu {
   width: 100%;
-  padding: calc(var(--spacer) / 2);
+  padding: 0 calc(var(--spacer) / 2);
+  border-bottom: 1px solid rgba(41, 81, 64, 0.15);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  background: linear-gradient(
-    135deg,
-    #1f2c50 0%,
-    var(--navy-640) 27.47%,
-    var(--navy-620) 43.49%,
-    var(--navy-alpha-94) 55.43%,
-    #1e2e52 100%
-  );
+  background: var(--menu-background);
   justify-content: center;
   /* padding: 0; */
   /* margin: 0; */
-  color: white;
+  color: var(--menu-font-color);
 }
 .container {
-  width: 1160px;
-  height: 70px;
-  padding: calc(var(--spacer) / 2);
+  width: 100%;
+  max-width: 1160px;
+  height: var(--menu-height);
+  padding: 0;
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   background: transparent;
-  margin-bottom: 40px;
 }
 
 .logo {
@@ -57,7 +51,7 @@
   gap: calc(var(--spacer) / 3);
   margin-left: auto;
   align-items: center;
-  font-size: 22px;
+  font-size: var(--font-size-base);
 }
 
 @media screen and (min-width: 75rem) {
@@ -76,8 +70,7 @@
 
 @media screen and (min-width: 75rem) {
   .menu {
-    padding: calc(var(--spacer) / 0.8);
-    padding-top: 18px;
+    padding: 0 var(--spacer);
   }
 }
 /* @media screen and (max-width: 75rem) {
@@ -110,7 +103,7 @@
 .link {
   composes: text from '../@shared/atoms/Button/index.module.css';
 
-  color: white;
+  color: var(--menu-font-color);
   font-weight: var(--menu-link-font-weight);
   font-size: var(--menu-link-font-size);
 }
@@ -204,9 +197,8 @@ svg.caret {
   align-items: center;
   transition: transform 0.2s;
   border-radius: 20px;
-  padding: 3px 8px;
-  width: 135px;
-  height: 40px;
+  padding: 0 16px;
+  height: 34px;
 }
 
 .ctaButton:hover {
@@ -220,20 +212,22 @@ svg.caret {
 .buttonText {
   font-family: var(--font-family);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 92%;
   text-align: center;
-  color: #0a4b70;
+  color: var(--clr-navy);
 }
 .uploadIcon {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--clr-navy);
 }
 .demoText {
   font-family: var(--font-family-heading);
   font-weight: 700;
   white-space: nowrap;
-  color: #fdd655;
+  color: var(--brand-agrospai-dark);
   margin-top: 0px;
   margin-left: 60px;
   font-size: 18px;
@@ -253,22 +247,15 @@ svg.caret {
   }
 }
 
-@media screen and (min-width: 256px) and (max-width: 768px) {
-  .actions {
-    font-size: 18px;
-    margin-top: 1rem;
-  }
-}
 @media screen and (min-width: 1550px) and (max-width: 2550px) {
   .container {
-    width: 1500px;
+    max-width: 1500px;
     /* height: 140px; */
   }
 }
 @media screen and (min-width: 1023px) and (max-width: 1549px) {
   .container {
     /* width: 1500px; */
-    height: 90px;
   }
 }
 @media screen and (min-width: 1151px) and (max-width: 1549px) {
@@ -277,7 +264,7 @@ svg.caret {
   } */
   .demoText {
     white-space: nowrap;
-    color: #fdd655;
+    color: var(--brand-agrospai-dark);
     margin-top: 0px;
     margin-left: 10px;
     font-size: 18px;
@@ -292,21 +279,9 @@ svg.caret {
     width: 100%;
     /* height: 90px; */
   }
-  .ctaButton {
-    border-radius: 20px;
-    width: 100px;
-    height: 30px;
-  }
-  .buttonText {
-    font-size: 16px;
-  }
-  .actions {
-    font-size: 16px;
-    font-weight: 700;
-  }
   .demoText {
     white-space: nowrap;
-    color: #fdd655;
+    color: var(--brand-agrospai-dark);
     margin-top: 0px;
     margin-left: 5px;
     font-size: 16px;
@@ -318,7 +293,7 @@ svg.caret {
 
 @media screen and (min-width: 2550px) {
   .container {
-    width: 1900px;
+    max-width: 1900px;
     /* height: 140px; */
   }
 }
@@ -339,10 +314,11 @@ svg.caret {
   padding: 8px;
 }
 
-.burgerIcon {
+.burgerIcon,
+.burgerButton .closeIcon {
   width: 24px;
   height: 24px;
-  fill: white;
+  fill: var(--menu-icon-fill-color);
 }
 
 /* Mobile Menu */
@@ -354,6 +330,9 @@ svg.caret {
   height: 100vh;
   background: var(--black-alpha-90);
   z-index: 1000;
+  --menu-font-color: var(--brand-white);
+  --menu-icon-fill-color: var(--brand-white);
+  --menu-caret-fill-color: var(--brand-white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -412,7 +391,7 @@ svg.caret {
   }
   .demoText {
     white-space: nowrap;
-    color: #fdd655;
+    color: var(--brand-agrospai-dark);
     margin-top: 0px;
     margin-left: 5px;
     font-size: 14px;
@@ -423,12 +402,9 @@ svg.caret {
 }
 
 @media screen and (min-width: 50px) and (max-width: 469px) {
-  .container {
-    height: 85px;
-  }
   .demoText {
     white-space: nowrap;
-    color: #fdd655;
+    color: var(--brand-agrospai-dark);
     margin-top: 0px;
     margin-left: 5px;
     font-size: 14px;

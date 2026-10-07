@@ -21,7 +21,7 @@ export default function Features(): ReactElement {
     {
       title: 'Data Regulation Compliance',
       description:
-        'Ocean Enterprise is compliant to the most recent EU regulations related to data exchange, AI and privacy regulation (Data Act, AI Act, GDPR, ...).'
+        'Built on Ocean Enterprise, AgrospAI is compliant to the most recent EU regulations related to data exchange, AI and privacy regulation (Data Act, AI Act, GDPR, ...).'
     },
     {
       title: 'Cloud Agnostic Design',

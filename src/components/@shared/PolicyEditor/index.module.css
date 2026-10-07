@@ -358,11 +358,11 @@ body .addPolicyDropdown {
     linear-gradient(135deg, #ffffff 50%, transparent 50%),
     linear-gradient(
       135deg,
-      #1f2c50 0%,
-      rgba(10, 75, 112, 0.8) 27.47%,
-      rgba(10, 75, 112, 0.7) 43.49%,
-      rgba(10, 75, 112, 0.8) 55.43%,
-      #1e2e52 100%
+      var(--clr-navy-deep) 0%,
+      rgba(0, 73, 103, 0.8) 27.47%,
+      rgba(0, 73, 103, 0.7) 43.49%,
+      rgba(0, 73, 103, 0.8) 55.43%,
+      var(--clr-navy-deep) 100%
     ) !important;
   background-position: calc(100% - 15px) calc(50% + 2px),
     calc(100% - 10px) calc(50% + 2px), 0 0 !important;

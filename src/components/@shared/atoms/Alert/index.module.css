@@ -20,7 +20,7 @@
   line-height: var(--text-line-xl);
 
   border: 0 transparent;
-  border-left: 5px solid #fdd655;
+  border-left: 5px solid var(--clr-amber);
   border-radius: 0;
   padding: 8px 11px;
   background: var(--background-detail-box);
@@ -77,7 +77,7 @@ button.action {
 }
 
 .info {
-  border-color: #fdd655;
+  border-color: var(--clr-amber);
   background: var(--surface-warning);
 }
 

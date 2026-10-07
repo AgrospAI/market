@@ -41,7 +41,7 @@
 
 .socialButton:hover:not(:disabled) {
   background: #f8fafc;
-  border-color: #0a4b70;
+  border-color: var(--clr-navy);
 }
 
 .socialButton:disabled {

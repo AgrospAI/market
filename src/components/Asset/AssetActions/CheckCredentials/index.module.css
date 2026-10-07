@@ -131,7 +131,7 @@
   font-size: 14px;
   line-height: 157%;
   text-align: center;
-  color: #0a4b70;
+  color: var(--clr-navy);
   border-radius: 20px;
   padding: 8px 24px;
   min-width: 140px;
@@ -139,11 +139,11 @@
   box-shadow: 1px 2px 8px 0 var(--black-alpha-15);
   background: linear-gradient(
     135deg,
-    #fdd655 0%,
-    rgba(253, 214, 85, 0.8) 27.47%,
-    rgba(253, 214, 85, 0.7) 43.49%,
-    rgba(253, 214, 85, 0.8) 55.43%,
-    #fdd655 100%
+    var(--clr-amber) 0%,
+    rgba(212, 227, 147, 0.8) 27.47%,
+    rgba(212, 227, 147, 0.7) 43.49%,
+    rgba(212, 227, 147, 0.8) 55.43%,
+    var(--clr-amber) 100%
   );
   border: none;
   cursor: pointer;

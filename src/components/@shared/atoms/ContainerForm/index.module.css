@@ -52,7 +52,7 @@
 .container.accent
   :global([class*='FormInput_field'])
   select[name='services[0].description.language'] {
-  border: 1px solid rgba(10, 75, 112, 0.5);
+  border: 1px solid rgba(0, 73, 103, 0.5);
   border-radius: 20px;
   padding: 10px 25px;
   min-height: 40px;

@@ -31,7 +31,7 @@
 }
 
 .iconContainer {
-  background-color: #fdd655;
+  background-color: var(--clr-amber);
   border-radius: 50%;
   padding: 0.25rem;
   display: flex;

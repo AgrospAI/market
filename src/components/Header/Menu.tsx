@@ -102,7 +102,7 @@ export default function Menu(): ReactElement {
         <Link href="/" className={styles.logo}>
           <Logo />
         </Link>
-        <div className={styles.demoText}>Demonstration MarketPlace</div>
+        {/* <div className={styles.demoText}>Data Space Demonstrator</div> */}
 
         {/* <ul className={styles.navigation}>
         {siteContent?.menu.map((item: MenuItem) => (

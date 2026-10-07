@@ -28,7 +28,7 @@
 }
 
 .scroll::-webkit-scrollbar-thumb {
-  background: #fdd655;
+  background: var(--clr-amber);
   border-radius: 4px;
 }
 
@@ -51,11 +51,11 @@
 
 .datasetCard:hover {
   box-shadow: 1px 4px 8px 0 var(--black-alpha-15);
-  background: rgba(10, 75, 112, 0.04);
+  background: rgba(0, 73, 103, 0.04);
 }
 
 .datasetCard.selected {
-  background: rgba(10, 75, 112, 0.04);
+  background: rgba(0, 73, 103, 0.04);
   box-shadow: 0 4px 8px var(--navy-alpha-20);
 }
 
@@ -103,7 +103,7 @@
   color: #303031;
 }
 .priceUnit {
-  color: #00adb2;
+  color: var(--clr-teal);
 }
 
 .envId {
@@ -143,7 +143,7 @@
 }
 
 .freeTag {
-  border: 1px solid #00adb2;
+  border: 1px solid var(--clr-teal);
   border-radius: 20px;
   padding: 2px 8px;
   width: fit-content;
@@ -156,7 +156,7 @@
   font-size: 12px;
   line-height: 100%;
   text-align: center;
-  color: #00adb2;
+  color: var(--clr-teal);
 }
 
 .paidTag {

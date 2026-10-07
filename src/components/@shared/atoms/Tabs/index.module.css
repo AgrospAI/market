@@ -83,7 +83,7 @@
   margin-top: -2px;
   appearance: none;
   -webkit-appearance: none;
-  border: 1px solid #fdd655;
+  border: 1px solid var(--clr-amber);
   background: white;
   border-radius: 50%;
 }
